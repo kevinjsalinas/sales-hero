@@ -4,7 +4,7 @@ from sqlalchemy.exc import IntegrityError
 
 from config import app, db, api
 
-# from models import ModelName, ModelName, etc.
+from models import Call, Lead, SalesRep
 
 class Home(Resource):
     def get(self):
