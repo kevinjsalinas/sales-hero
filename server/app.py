@@ -6,10 +6,48 @@ from config import app, db, api
 
 from models import Call, Lead, SalesRep
 
+class SalesReps(Resource):
+
+    def get(self):
+        pass
+
+api.add_resource(SalesReps, '/salesreps')
+
+class SalesRepByID(Resource):
+
+    def patch(self,id):
+        pass 
+
+api.add_resource(SalesRepByID, '/salesreps/<int:id>')
+
+class Leads(Resource):
+
+    def post(self):
+        pass 
+
+api.add_resource(Leads, '/leads')
+
+class LeadByID(Resource):
+
+    def delete(self,id):
+        pass
+
+api.add_resource(LeadByID, '/leads/<int:id>')
+
+class Calls(Resource):
+
+    def post(self):
+        pass
+
+api.add_resource(Calls, '/calls')
+
+
+
+
+
 class Home(Resource):
     def get(self):
         return {'message': 'hello'}
-
 
 api.add_resource(Home, '/')
 

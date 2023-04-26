@@ -12,8 +12,9 @@ class SalesRep(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     close_rate = db.Column(db.Float, nullable=False)
+    # add image for rep 
 
-    
+
     calls = db.relationship('Call', backref='salesrep')
 
 
@@ -36,3 +37,4 @@ class Call (db.Model, SerializerMixin):
     salesrep_id = db.Column(db.Integer, db.ForeignKey('salesreps.id'))
     lead_id = db.Column(db.Integer, db.ForeignKey('leads.id'))
 
+    created_at = db.Column(db.DateTime, server_default = db.func.now())
