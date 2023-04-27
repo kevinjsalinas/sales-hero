@@ -9,6 +9,8 @@ class SalesRep(db.Model, SerializerMixin):
 
     __tablename__ = 'salesreps'
 
+    serialize_rules = ('-calls',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     close_rate = db.Column(db.Float, nullable=False)
@@ -22,6 +24,8 @@ class Lead(db.Model, SerializerMixin):
 
     __tablename__ = 'leads'
 
+    serialize_rules = ('-calls',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     phone = db.Column(db.String, nullable=False)
@@ -32,6 +36,8 @@ class Lead(db.Model, SerializerMixin):
 class Call (db.Model, SerializerMixin):
 
     __tablename = 'calls'
+
+    serialize_rules = ('-lead', '-salesrep')
 
     id = db.Column(db.Integer, primary_key=True)
     salesrep_id = db.Column(db.Integer, db.ForeignKey('salesreps.id'))
