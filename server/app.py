@@ -2,9 +2,14 @@ from flask import request, make_response
 from flask_restful import Resource 
 from sqlalchemy.exc import IntegrityError
 
+# add 
 from config import app, db, api
+from models import Call, Lead, SalesRep, User
 
-from models import Call, Lead, SalesRep
+class Signup(Resource):
+
+    def post(self):
+        pass
 
 class SalesReps(Resource):
 
