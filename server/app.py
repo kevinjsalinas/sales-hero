@@ -1,4 +1,5 @@
-from flask import request, make_response 
+# add session
+from flask import request, make_response, session 
 from flask_restful import Resource 
 from sqlalchemy.exc import IntegrityError
 
@@ -9,7 +10,34 @@ from models import Call, Lead, SalesRep, User
 class Signup(Resource):
 
     def post(self):
-        pass
+        
+        data = request.get_json()
+
+        new_user = User(username=data['username'])
+
+        new_user.password_hash = data.get('password')
+
+        try:
+
+            db.session.add(new_user)
+            db.session.commit()
+
+            session['new_user_id'] = new_user.id
+
+            new_user_dict = new_user.to_dict()
+
+            response = make_response(new_user_dict, 201)
+
+        except IntegrityError:
+
+            db.session.rollback()
+
+            response = make_response({'error': 'username already exists'}, 422)
+
+        return response
+
+api.add_resource(Signup, '/signup')
+
 
 class SalesReps(Resource):
 

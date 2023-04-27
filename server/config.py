@@ -10,6 +10,8 @@ from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__)
+# generates a secret key for cookies
+app.secret_key = b'TUB{\x9bH\t\xda\xd8\xf6hB\xf1\xa8\xcdF'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 app.json.compact = False 
