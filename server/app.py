@@ -7,6 +7,23 @@ from sqlalchemy.exc import IntegrityError
 from config import app, db, api
 from models import Call, Lead, SalesRep, User
 
+@app.before_request
+def check_if_logged_in():
+    open_access_list = [
+        'signup',
+        'login',
+        'check_session'
+    ]
+
+    # if NOT in this list + NOT logged in = error
+    # if NOT in this list + logged in = continue
+    # if in this list + not logged in = continue 
+    if (request.endpoint) not in open_access_list and (not session.get('user_id')):
+       
+        response = make_response( { 'error': 'Unauthorized'}, 401)
+
+        return response
+
 class Signup(Resource):
 
     def post(self):
@@ -36,7 +53,7 @@ class Signup(Resource):
 
         return response
 
-api.add_resource(Signup, '/signup')
+api.add_resource(Signup, '/signup', endpoint='signup')
 
 class Login(Resource):
 
@@ -64,7 +81,7 @@ class Login(Resource):
 
         return response
 
-api.add_resource(Login, '/login')
+api.add_resource(Login, '/login', endpoint='login')
 
 class CheckSession(Resource):
 
@@ -84,7 +101,19 @@ class CheckSession(Resource):
 
         return response
 
-api.add_resource(CheckSession, '/check_session')
+api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+
+class Logout(Resource):
+
+    def delete(self):
+
+        session['user_id'] = None
+
+        response = make_response({}, 204)
+
+        return response
+
+api.add_resource(Logout, '/logout', endpoint='logout')
 
 class SalesReps(Resource):
 
@@ -106,7 +135,7 @@ class SalesReps(Resource):
 
         return response
 
-api.add_resource(SalesReps, '/salesreps')
+api.add_resource(SalesReps, '/salesreps', endpoint='salesreps')
 
 class SalesRepByID(Resource):
 
@@ -139,7 +168,7 @@ class SalesRepByID(Resource):
 
         return response
               
-api.add_resource(SalesRepByID, '/salesreps/<int:id>')
+api.add_resource(SalesRepByID, '/salesreps/<int:id>', endpoint='salesrepsbyid')
 
 class Leads(Resource):
 
@@ -164,7 +193,7 @@ class Leads(Resource):
 
         return response
 
-api.add_resource(Leads, '/leads')
+api.add_resource(Leads, '/leads', endpoint='leads')
 
 class LeadByID(Resource):
 
@@ -185,7 +214,7 @@ class LeadByID(Resource):
 
         return response
 
-api.add_resource(LeadByID, '/leads/<int:id>')
+api.add_resource(LeadByID, '/leads/<int:id>', endpoint='leadsbyid')
 
 class Calls(Resource):
 
@@ -210,7 +239,7 @@ class Calls(Resource):
 
         return response
 
-api.add_resource(Calls, '/calls')
+api.add_resource(Calls, '/calls', endpoint='calls')
 
 
 class Home(Resource):
