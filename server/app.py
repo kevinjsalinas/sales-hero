@@ -38,6 +38,53 @@ class Signup(Resource):
 
 api.add_resource(Signup, '/signup')
 
+class Login(Resource):
+
+    def post(self):
+
+        data = request.get_json()
+
+        username = data.get('username')
+        password = data.get('password')
+
+        user = User.query.filter_by(username=username).first()
+
+        if user:
+            if user.authenticate(password):
+
+                session['user_id'] = user.id
+
+                user_dict = user.to_dict()
+
+                response = make_response(user_dict, 200)
+
+                return response
+
+        response = make_response ({ 'error': 'Unauthorized'}, 401)
+
+        return response
+
+api.add_resource(Login, '/login')
+
+class CheckSession(Resource):
+
+    def get(self):
+
+        if session.get('user_id'):
+
+            user = User.query.filter_by(id=session['user_id']).first()
+
+            user_dict = user.to_dict()
+
+            response = make_response(user_dict, 200)
+
+            return response
+
+        response = make_response({'error': '401 Unauthorized'}, 401)
+
+        return response
+
+api.add_resource(CheckSession, '/check_session')
 
 class SalesReps(Resource):
 
