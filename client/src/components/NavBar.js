@@ -10,13 +10,14 @@ function NavBar() {
         <>
             <Navbar bg="light" expand="sm">
                 <Container>
-                    <Navbar.Brand href="/">SalesHero</Navbar.Brand>
+                    <Navbar.Brand href="/salesreps">SalesHero</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/salesreps">SalesReps</Nav.Link>
                             <Nav.Link href="/leads">Leads</Nav.Link>
                             <Nav.Link href="/calls">Calls</Nav.Link>
+                            <Nav.Link href="/logout">Logout</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
