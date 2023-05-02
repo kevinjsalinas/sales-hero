@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
-import { Button, Form } from 'react-bootstrap';
+import React, { useContext, useState } from "react";
+import { Button, Form, Modal } from 'react-bootstrap';
 import { useForm } from "react-hook-form"
+import { Link } from 'react-router-dom'
+
 
 import { UserContext } from '../context/user';
 
 function SignupForm() {
+
+    const [ show, setShow ] = useState(false)
 
     const { setUser } = useContext(UserContext);
 
@@ -26,7 +30,9 @@ function SignupForm() {
             })
             .then((r) => {
                 if (r.ok) {
-                    r.json().then(setUser)
+                    r.json()
+                    // .then(setUser)
+                    setShow(true)
                 } else {
                     r.json().then((err) => setUser(err))
                 }
@@ -46,6 +52,25 @@ function SignupForm() {
 
     return (
         <>
+            {show 
+            ? 
+            <>
+                <Modal show={show} onHide={() => setShow(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Success!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>You've created an account</Modal.Body>
+                    <Modal.Footer>
+                        <Link to="/">
+                            <Button onClick={() => setShow(false)} variant="primary">
+                                Close
+                            </Button>
+                        </Link>
+                    </Modal.Footer>
+                </Modal>
+            </> :
+            ""
+            }
             <Form className="">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Create Username</Form.Label>

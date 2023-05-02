@@ -13,7 +13,7 @@ def check_if_logged_in():
         'signup',
         'login',
         'check_session',
-        '/'
+        # '/'
     ]
 
     # if NOT in this list + NOT logged in = error
@@ -243,11 +243,11 @@ class Calls(Resource):
 api.add_resource(Calls, '/calls', endpoint='calls')
 
 
-class Home(Resource):
-    def get(self):
-        return {'message': 'hello'}
+# class Home(Resource):
+#     def get(self):
+#         return {'message': 'hello'}
 
-api.add_resource(Home, '/', endpoint='/')
+# api.add_resource(Home, '/', endpoint='/')
 
 
 

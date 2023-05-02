@@ -29,14 +29,14 @@ function App() {
     <NavBar/>
     <main>
       <Switch>
-        <Route exact path='/'>
-          <SalesReps/>
-        </Route>
         <Route path='/leads'>
           <Leads/>
         </Route>
         <Route path='/calls'>
           <Calls/>
+        </Route>
+        <Route exact path='/'>
+          <SalesReps/>
         </Route>
       </Switch>
     </main>    
