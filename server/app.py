@@ -188,7 +188,7 @@ class Leads(Resource):
 
             leads_list.append(l_dict)
 
-        response = make_response(l_list, 200)
+        response = make_response(leads_list, 200)
 
         return response
 

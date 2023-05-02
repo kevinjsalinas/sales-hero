@@ -5,6 +5,40 @@ import LeadCard from "../components/LeadCard";
 function Leads() {
 
     const [data, setData] = useState([])
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: ""
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+
+        fetch('/leads', {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( {
+                'name': formData.name,
+                'phone': formData.phone,
+                'email': formData.email
+            })
+        })
+        .then(r => r.json())
+        .then(r => {
+            setData([...data, r])
+        })
+    }
+
+
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setFormData({...formData, [name]:value})
+    }
 
     useEffect(()=>{
 
@@ -16,19 +50,19 @@ function Leads() {
     }, [])
 
 
-    const leadsList = data?.map((lead) => {
-        return ( <LeadCard lead={lead} /> )
+    const leadsList = data.map((lead) => {
+        return ( <LeadCard key={lead.id} lead={lead} /> )
     })
 
 
     return (
         <>  
             <div className="ui segment">
-                <form  className="ui form">
+                <form onSubmit={handleSubmit} className="ui form">
                     <div className="inline fields">
-                        <input  type="name" name="name" />
-                        <input  type="phone" name="phone" placeholder="831-231-2123" />
-                        <input  type="email" name="email" placeholder="username@email.com" />
+                        <input onChange={handleChange} type="name" name="name" />
+                        <input onChange={handleChange} type="phone" name="phone" placeholder="831-231-2123" />
+                        <input onChange={handleChange} type="email" name="email" placeholder="username@email.com" />
                     </div>
                     <button className="ui button" type="submit">
                         Add Lead
@@ -39,16 +73,13 @@ function Leads() {
                 <tbody>
                     <tr>
                         <th>
-                            <h3 className="ui center aligned header">Date</h3>
+                            <h3 className="ui center aligned header">Name</h3>
                         </th>
                         <th>
-                            <h3 className="ui center aligned header">Description</h3>
+                            <h3 className="ui center aligned header">Phone</h3>
                         </th>
                         <th>
-                            <h3 className="ui center aligned header">Category</h3>
-                        </th>
-                        <th>
-                            <h3 className="ui center aligned header">Amount</h3>
+                            <h3 className="ui center aligned header">Email</h3>
                         </th>
                     </tr>
                     {leadsList}
