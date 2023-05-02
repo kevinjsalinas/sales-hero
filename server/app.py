@@ -173,6 +173,25 @@ api.add_resource(SalesRepByID, '/salesreps/<int:id>', endpoint='salesrepsbyid')
 
 class Leads(Resource):
 
+    def get(self):
+        
+        leads_list = []
+
+        for l in Lead.query.all():
+
+            l_dict = {
+                'id': l.id,
+                'name': l.name,
+                'phone': l.phone,
+                'email': l.email
+            }
+
+            leads_list.append(l_dict)
+
+        response = make_response(l_list, 200)
+
+        return response
+
     def post(self):
 
         data = request.get_json()
