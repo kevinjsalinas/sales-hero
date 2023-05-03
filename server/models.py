@@ -40,6 +40,8 @@ class SalesRep(db.Model, SerializerMixin):
     close_rate = db.Column(db.Float, nullable=False)
     # add image for rep 
 
+
+    leads = association_proxy('calls', 'lead' )
     calls = db.relationship('Call', backref='salesrep')
 
 class Lead(db.Model, SerializerMixin):
@@ -53,6 +55,7 @@ class Lead(db.Model, SerializerMixin):
     phone = db.Column(db.String, nullable=False)
     email = db.Column(db.String)
 
+    salesreps = association_proxy('calls', 'salesrep' )
     calls = db.relationship('Call', backref='lead', cascade="all, delete-orphan")
 
 class Call (db.Model, SerializerMixin):

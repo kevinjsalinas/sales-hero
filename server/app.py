@@ -238,6 +238,28 @@ api.add_resource(LeadByID, '/leads/<int:id>', endpoint='leadsbyid')
 
 class Calls(Resource):
 
+    def get(self):
+
+        call_list = []
+
+        for call in Call.query.all():
+            call_appointment = {
+                'call id': call.id,
+                'salesrep': {
+                    'salesrep id': call.salesrep.id,
+                    'name': call.salesrep.name
+                },
+                'lead': {
+                    'lead id': call.lead.id,
+                    'name': call.lead.name
+                }
+            }
+            call_list.append(call_appointment)
+        
+        response = make_response(call_list, 200)
+
+        return response
+
     def post(self):
 
         data = request.get_json()
@@ -267,8 +289,6 @@ api.add_resource(Calls, '/calls', endpoint='calls')
 #         return {'message': 'hello'}
 
 # api.add_resource(Home, '/', endpoint='/')
-
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
