@@ -54,7 +54,7 @@ function Leads() {
     }, [])
 
 
-    const leadsList = data.map((lead) => {
+    const leadList = data.map((lead) => {
         return ( <LeadCard key={lead.id} lead={lead} removeLead={removeLead} /> )
     })
 
@@ -86,7 +86,7 @@ function Leads() {
                             <h3 className="ui center aligned header">Email</h3>
                         </th>
                     </tr>
-                    {leadsList}
+                    {leadList}
                  </tbody>
             </table>
         </>

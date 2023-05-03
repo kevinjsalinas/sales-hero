@@ -6,6 +6,9 @@ function LeadCard ({lead, removeLead}) {
 
     let intlocation = parseInt(id)
 
+    console.log(intlocation, "test")
+
+
     let dropLead = () => {
 
         fetch(`/leads/${intlocation}`, { method: 'DELETE'})

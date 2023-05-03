@@ -67,7 +67,7 @@ function SalesRepCard ( { salesrep, setData, list }) {
                     <label>Close Rate %:</label>
                     <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder="ex. 50.0" />
                     <div class="ms-2 text-center">
-                        <Button type="submit mt-1" variant="dark" class="btn btn-primary">Submit</Button>
+                        <Button type="submit mt-1" variant="primary" class="btn btn-primary">Submit</Button>
                     </div>
                 </form>
             </div>

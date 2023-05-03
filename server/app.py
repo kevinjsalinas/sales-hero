@@ -244,8 +244,8 @@ class Calls(Resource):
 
         for call in Call.query.all():
             call_appointment = {
-                'call id': call.id,
-                'call created': call.created_at,
+                'id': call.id,
+                # 'call created': call.created_at,
                 'salesrep': {
                     'salesrep id': call.salesrep.id,
                     'name': call.salesrep.name
@@ -274,7 +274,7 @@ class Calls(Resource):
             # new_call_dict = new_call.to_dict()
 
             new_call_dict = {
-                'call id': new_call.id,
+                'id': new_call.id,
                 'salesrep': {
                     'salesrep id': new_call.salesrep.id,
                     'name': new_call.salesrep.name
