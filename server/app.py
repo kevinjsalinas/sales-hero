@@ -245,6 +245,7 @@ class Calls(Resource):
         for call in Call.query.all():
             call_appointment = {
                 'call id': call.id,
+                'call created': call.created_at,
                 'salesrep': {
                     'salesrep id': call.salesrep.id,
                     'name': call.salesrep.name
@@ -270,7 +271,19 @@ class Calls(Resource):
             db.session.add(new_call)
             db.session.commit()
 
-            new_call_dict = new_call.to_dict()
+            # new_call_dict = new_call.to_dict()
+
+            new_call_dict = {
+                'call id': new_call.id,
+                'salesrep': {
+                    'salesrep id': new_call.salesrep.id,
+                    'name': new_call.salesrep.name
+                },
+                'lead': {
+                    'lead id': new_call.lead.id,
+                    'name': new_call.lead.name
+                }
+            }
 
             response = make_response(new_call_dict, 201)
 
@@ -282,6 +295,31 @@ class Calls(Resource):
         return response
 
 api.add_resource(Calls, '/calls', endpoint='calls')
+
+class CallByID(Resource):
+
+    def delete(self,id):
+            
+            call = Call.query.filter_by(id=id).first()
+
+            if call == None:
+
+                response = make_response({'message': 'call not found'}, 404)
+
+            else:
+
+                db.session.delete(call)
+                db.session.commit()
+
+                response = make_response({}, 204)
+
+            return response
+
+
+api.add_resource(CallByID, '/calls/<int:id>')
+
+
+    
 
 
 # class Home(Resource):
