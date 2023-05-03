@@ -12,8 +12,8 @@ function Leads() {
     })
 
     const handleSubmit = (e) => {
-        e.preventDefault()
 
+        e.preventDefault()
 
         fetch('/leads', {
             method: 'POST',
@@ -31,6 +31,8 @@ function Leads() {
         .then(r => {
             setData([...data, r])
         })
+
+        e.target.reset()
     }
 
     let removeLead = (drop) => {
@@ -76,6 +78,9 @@ function Leads() {
             <table className="ui celled striped padded table">
                 <tbody>
                     <tr>
+                        <th>
+                            <h3 className="ui center aligned header">ID</h3>
+                        </th>
                         <th>
                             <h3 className="ui center aligned header">Name</h3>
                         </th>

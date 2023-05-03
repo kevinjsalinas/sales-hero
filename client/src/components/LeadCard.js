@@ -19,6 +19,7 @@ function LeadCard ({lead, removeLead}) {
 
     return (
         <tr>
+        <td>{id}</td>
         <td>{name}</td>
         <td>{phone}</td>
         <td>{email}</td>

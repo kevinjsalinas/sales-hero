@@ -27,7 +27,8 @@ function LoginForm() {
             if (r.ok) {
                 r.json().then(setUser)
             } else {
-                r.json().then((err)=> setUser(err))
+                alert("Must enter a valid username and password")
+                // r.json().then((err)=> setUser(err))
             }
         })
 

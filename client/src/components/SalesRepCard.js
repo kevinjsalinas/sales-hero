@@ -52,6 +52,7 @@ function SalesRepCard ( { salesrep, setData, list }) {
         return (
             <div className="card-body">
                 <h1 class='card-title'>{name}</h1>
+                <h4>ID #: {id}</h4>
                 <h4>Close Rate: {close_rate}%</h4>
             </div>
         )
