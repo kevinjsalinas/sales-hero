@@ -33,6 +33,10 @@ function Leads() {
         })
     }
 
+    let removeLead = (drop) => {
+        setData(data.filter((lead) => lead.id !== drop))
+    }
+
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -51,7 +55,7 @@ function Leads() {
 
 
     const leadsList = data.map((lead) => {
-        return ( <LeadCard key={lead.id} lead={lead} /> )
+        return ( <LeadCard key={lead.id} lead={lead} removeLead={removeLead} /> )
     })
 
 
@@ -60,7 +64,7 @@ function Leads() {
             <div className="ui segment">
                 <form onSubmit={handleSubmit} className="ui form">
                     <div className="inline fields">
-                        <input onChange={handleChange} type="name" name="name" />
+                        <input onChange={handleChange} type="name" name="name" placeholder="FirstName LastName" />
                         <input onChange={handleChange} type="phone" name="phone" placeholder="831-231-2123" />
                         <input onChange={handleChange} type="email" name="email" placeholder="username@email.com" />
                     </div>

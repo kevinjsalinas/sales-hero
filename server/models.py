@@ -7,8 +7,6 @@ from config import db, bcrypt
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
-
 # insert models 
 
 class User(db.Model, SerializerMixin):
@@ -44,7 +42,6 @@ class SalesRep(db.Model, SerializerMixin):
 
     calls = db.relationship('Call', backref='salesrep')
 
-
 class Lead(db.Model, SerializerMixin):
 
     __tablename__ = 'leads'
@@ -56,7 +53,7 @@ class Lead(db.Model, SerializerMixin):
     phone = db.Column(db.String, nullable=False)
     email = db.Column(db.String)
 
-    calls = db.relationship('Call', backref='lead')
+    calls = db.relationship('Call', backref='lead', cascade="all, delete-orphan")
 
 class Call (db.Model, SerializerMixin):
 
