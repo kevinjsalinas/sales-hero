@@ -14,7 +14,7 @@ function SalesReps() {
     }, [])
 
     let salesrepList = data.map((salesrep) => {
-        return < SalesRepCard salesrep={salesrep} setData={setData} list={data}/>
+        return < SalesRepCard {...salesrep} setData={setData} list={data}/>
     }) 
 
     return (

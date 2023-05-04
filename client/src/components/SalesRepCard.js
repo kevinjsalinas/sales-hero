@@ -1,10 +1,12 @@
 import { React, useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import SalesRepLead from './SalesRepLead';
 
-function SalesRepCard ( { salesrep, setData, list }) {
+function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
     const [showEdit, setShowEdit] = useState(true);
 
-    let { id, name, close_rate } = salesrep
+    // console.log(salesrep.leads[0].email, "test")
+    console.log(leads, "sales rep card")
 
     let intlocation = parseInt(id)
 
@@ -14,6 +16,7 @@ function SalesRepCard ( { salesrep, setData, list }) {
         if (e.target.name.value !== '') {
             name = e.target.name.value;
         }
+        
         if (e.target.close_rate.value !== '') {
             close_rate = e.target.close_rate.value;
         }
@@ -47,6 +50,10 @@ function SalesRepCard ( { salesrep, setData, list }) {
         setShowEdit(!showEdit)
     }
 
+    let salesrepLeadList = leads.map((lead) => {
+        return < SalesRepLead {...lead} />
+    }) 
+
     let mainDisplay = () => {
 
         return (
@@ -54,6 +61,8 @@ function SalesRepCard ( { salesrep, setData, list }) {
                 <h1 class='card-title'>{name}</h1>
                 <h4>ID #: {id}</h4>
                 <h4>Close Rate: {close_rate}%</h4>
+                <h2 class='card-title'>Leads Assigned</h2>
+                {salesrepLeadList}
             </div>
         )
     }
@@ -62,13 +71,13 @@ function SalesRepCard ( { salesrep, setData, list }) {
 
         return (
             <div class='form-group mb-2'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}}>
                     <label>Name:</label>
-                    <input class="form-control" name='name' id="salesrep-name" placeholder="ex. James Lopez" />
+                    <input class="form-control" name='name' id="salesrep-name" placeholder="James Lopez" />
                     <label>Close Rate %:</label>
-                    <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder="ex. 50.0" />
+                    <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder="50.0" />
                     <div class="ms-2 text-center">
-                        <Button type="submit mt-1" variant="primary" class="btn btn-primary">Submit</Button>
+                        <Button type="submit mt-1" variant="primary" class="mb-2 btn btn-primary">Submit</Button>
                     </div>
                 </form>
             </div>
@@ -81,7 +90,7 @@ function SalesRepCard ( { salesrep, setData, list }) {
                 {
                     showEdit? mainDisplay() : modDisp()
                 }
-                <div class="ms-2 mb-2 text-center">
+                <div class="ms-2 mb-4 text-center">
                     <Button variant="primary" onClick={switchDisplay}>
                         Edit
                     </Button>

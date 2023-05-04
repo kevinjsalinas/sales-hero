@@ -1,13 +1,11 @@
 import React from "react"
+import LeadSalesRep from "./LeadSalesRep"
 
-function LeadCard ({lead, removeLead}) {
+function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
 
-    const { id, name, email, phone } = lead
+    console.log(salesreps, "lead card")
 
     let intlocation = parseInt(id)
-
-    console.log(intlocation, "test")
-
 
     let dropLead = () => {
 
@@ -17,12 +15,18 @@ function LeadCard ({lead, removeLead}) {
 
     }
 
+
+    let leadSalesrepList = salesreps.map((salesrep) => {
+        return < LeadSalesRep {...salesrep} />
+    }) 
+
     return (
         <tr>
         <td>{id}</td>
         <td>{name}</td>
         <td>{phone}</td>
         <td>{email}</td>
+        <td>{leadSalesrepList}</td>
         <td>
           <button onClick={dropLead} >delete</button>
         </td>

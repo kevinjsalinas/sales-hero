@@ -57,12 +57,13 @@ function Leads() {
 
 
     const leadList = data.map((lead) => {
-        return ( <LeadCard key={lead.id} lead={lead} removeLead={removeLead} /> )
+        return ( <LeadCard key={lead.id} {...lead} removeLead={removeLead} /> )
     })
 
 
     return (
         <>  
+            <h1>Leads Page</h1>
             <div className="ui segment">
                 <form onSubmit={handleSubmit} className="ui form">
                     <div className="inline fields">
@@ -89,6 +90,9 @@ function Leads() {
                         </th>
                         <th>
                             <h3 className="ui center aligned header">Email</h3>
+                        </th>
+                        <th>
+                            <h3 className="ui center aligned header">SalesRep</h3>
                         </th>
                     </tr>
                     {leadList}

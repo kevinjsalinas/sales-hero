@@ -119,19 +119,9 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 class SalesReps(Resource):
 
     def get(self):
+
+        sales_reps_list = [sr.to_dict() for sr in SalesRep.query.all()]
         
-        sales_reps_list = []
-
-        for sr in SalesRep.query.all():
-
-            sr_dict = {
-                'id': sr.id,
-                'name': sr.name,
-                'close_rate': sr.close_rate
-            }
-
-            sales_reps_list.append(sr_dict)
-
         response = make_response(sales_reps_list, 200)
 
         return response
@@ -175,20 +165,25 @@ class Leads(Resource):
 
     def get(self):
         
-        leads_list = []
+        leads_query = Lead.query.all()
+        
+        lead_list = []
 
-        for l in Lead.query.all():
-
-            l_dict = {
+        for l in leads_query:
+            leads = [lead.to_dict() for lead in l.salesreps] 
+            lead_dict = {
                 'id': l.id,
                 'name': l.name,
                 'phone': l.phone,
-                'email': l.email
+                'email': l.email,
+                'salesreps': leads  
             }
 
-            leads_list.append(l_dict)
+            lead_list.append(lead_dict)
 
-        response = make_response(leads_list, 200)
+        # lead_list = [l.to_dict() for l in Lead.query.all()]
+
+        response = make_response(lead_list, 200)
 
         return response
 
