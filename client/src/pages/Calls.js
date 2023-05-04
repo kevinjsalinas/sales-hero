@@ -67,11 +67,11 @@ function Calls() {
                 <form hidden={visible} onSubmit={handleSubmit} style={{ width: '20%', margin:'auto'}}>
                     <div class='pb-2 form-group'>
                         <label> Sales Rep ID </label>
-                        <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="ex. 1"/> 
+                        <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="1"/> 
                     </div>
                     <div class="pb-4 form-group">
                         <label >Lead ID</label>
-                        <input onChange={handleChange} name='lead_id' class="form-control" placeholder="ex. 1" />
+                        <input onChange={handleChange} name='lead_id' class="form-control" placeholder="1" />
                     </div>
                     <Button variant = "primary" onClick ={handleSubmit} type="submit" class="btn btn-primary">Submit</Button>
                 </form>

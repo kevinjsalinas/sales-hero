@@ -39,8 +39,9 @@ class Signup(Resource):
 
             db.session.add(new_user)
             db.session.commit()
-
-            session['new_user_id'] = new_user.id
+            
+            # changed from new_user_id to user_id
+            session['user_id'] = new_user.id
 
             new_user_dict = new_user.to_dict()
 

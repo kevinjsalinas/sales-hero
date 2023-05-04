@@ -31,8 +31,9 @@ function SignupForm() {
             .then((r) => {
                 if (r.ok) {
                     r.json()
-                    // .then(setUser)
-                    setShow(true)
+                    .then(setUser)
+                    // this was for the Modal as a backup for signup
+                    // setShow(true)
                 } else {
                     r.json().then((err) => setUser(err))
                 }
