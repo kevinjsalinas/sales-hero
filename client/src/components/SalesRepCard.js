@@ -50,7 +50,7 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
         setShowEdit(!showEdit)
     }
 
-    let salesrepLeadList = leads.map((lead) => {
+    let salesrepLeadList = leads?.map((lead) => {
         return < SalesRepLead {...lead} />
     }) 
 

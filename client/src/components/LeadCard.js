@@ -16,7 +16,7 @@ function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
     }
 
 
-    let leadSalesrepList = salesreps.map((salesrep) => {
+    let leadSalesrepList = salesreps?.map((salesrep) => {
         return < LeadSalesRep {...salesrep} />
     }) 
 
