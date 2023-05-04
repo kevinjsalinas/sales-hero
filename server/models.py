@@ -69,3 +69,25 @@ class Call (db.Model, SerializerMixin):
     lead_id = db.Column(db.Integer, db.ForeignKey('leads.id'))
 
     created_at = db.Column(db.DateTime, server_default = db.func.now())
+
+    @validates('salesrep_id')
+    def validates_salesrep_id(self, key, value):
+        salesreps = SalesRep.query.all()
+        ids = [salesrep.id for salesrep in salesreps]
+
+        if not value:
+            raise ValueError('SalesRep must be provided.')
+        elif not value in ids:
+            raise ValueError('SalesRep must exist.')
+        return value
+
+    @validates('lead_id')
+    def validates_lead_id(self, key, value):
+        leads = Lead.query.all()
+        ids = [lead.id for lead in leads]
+
+        if not value:
+            raise ValueError('Lead must be provided.')
+        elif not value in ids:
+            raise ValueError('Lead must exist.')
+        return value 
