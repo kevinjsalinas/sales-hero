@@ -54,7 +54,7 @@ function Calls() {
             })
     }, [])
 
-    let callList = data.map((call) => {
+    let callList = data?.map((call) => {
         return <CallCard removeCall={removeCall} {...call}  />
     })
 
