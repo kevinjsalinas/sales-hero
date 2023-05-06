@@ -11,6 +11,9 @@ function Calls() {
         lead_id: ""
     })
 
+    const [salesrepdata, setSalesrepData] = useState([])
+    const [leaddata, setLeadData] = useState([])
+
     let handleSubmit = (e) => {
         e.preventDefault()
 
@@ -54,6 +57,26 @@ function Calls() {
             })
     }, [])
 
+
+    // salesrep data 
+    useEffect(()=>{
+        fetch('/salesreps')
+            .then(r => r.json())
+            .then(salesrepdata => {
+                setSalesrepData(salesrepdata)
+            })
+    }, [])
+
+    //lead data 
+    useEffect(()=>{
+        fetch('/leads')
+            .then(r => r.json())
+            .then(leaddata => {
+                setLeadData(leaddata)
+            })
+    }, [])
+
+
     let callList = data?.map((call) => {
         return <CallCard removeCall={removeCall} {...call}  />
     })
@@ -66,14 +89,28 @@ function Calls() {
             <div class="p-4">
                 <form hidden={visible} onSubmit={handleSubmit} style={{ width: '20%', margin:'auto'}}>
                     <div class='pb-2 form-group'>
-                        <label> Sales Rep ID </label>
-                        <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="1"/> 
+                        <label> Sales Rep</label>
+                        {/* <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="1"/>  */}
+                        <select defaultValue = "default" onChange={handleChange} name='salesrep_id'>
+                            <option value="Default">Choose an option</option>
+                            {salesrepdata?.map((salesr) => {
+                                return <option value={salesr.id} >{salesr.name}</option>
+                                })
+                            }
+                        </select>
                     </div>
                     <div class="pb-4 form-group">
-                        <label >Lead ID</label>
-                        <input onChange={handleChange} name='lead_id' class="form-control" placeholder="1" />
+                        <label >Lead</label>
+                        {/* <input onChange={handleChange} name='lead_id' class="form-control" placeholder="1" /> */}
+                        <select defaultValue = "default" onChange={handleChange} name='lead_id'>
+                        <option value="Default">Choose an option</option>
+                            {leaddata?.map((lead) => {
+                                return <option value={lead.id}  >{lead.name}</option>
+                                })
+                            }
+                        </select>
                     </div>
-                    <Button variant = "primary" onClick ={handleSubmit} type="submit" class="btn btn-primary">Submit</Button>
+                    <Button variant = "primary" type="submit" class="btn btn-primary">Submit</Button>
                 </form>
                 <table className="ui celled striped padded table">
                     <tbody>
