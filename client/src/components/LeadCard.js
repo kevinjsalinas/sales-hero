@@ -22,7 +22,6 @@ function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
 
     return (
         <tr>
-        <td>{id}</td>
         <td>{name}</td>
         <td>{phone}</td>
         <td>{email}</td>

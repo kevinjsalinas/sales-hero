@@ -5,6 +5,11 @@ import SalesRepLead from './SalesRepLead';
 function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     const [showEdit, setShowEdit] = useState(true);
 
+    //default state for patch placeholder 
+    const [ sRNameDefault, setsRNameDefault] = useState(name)
+    const [ sRImageDefault, setsRImageDefault] = useState(image)
+    const [ sRCloseRateDefault, setsRCloseRateDefault] = useState(close_rate)
+
     // console.log(salesrep.leads[0].email, "test")
     console.log(image, "sales rep card")
 
@@ -25,8 +30,6 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
             close_rate = e.target.close_rate.value;
         }
 
-
-    
         fetch(`/salesreps/${intlocation}`, {
             method: "PATCH",
             headers: {
@@ -51,6 +54,9 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
             copy[salesrepID].close_rate = close_rate
             setData(copy)
             setShowEdit(!showEdit)
+            setsRNameDefault(name)
+            setsRImageDefault(image)
+            setsRCloseRateDefault(close_rate)
         })
     }
 
@@ -82,11 +88,11 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
             <div class='form-group mb-2'>
                 <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}}>
                     <label>Name:</label>
-                    <input class="form-control" name='name' id="salesrep-name" placeholder="James Lopez" />
+                    <input class="form-control" name='name' id="salesrep-name" placeholder={sRNameDefault} />
                     <label>Image:</label>
-                    <input class="form-control" name='image' id="salesrep-image" placeholder="URL.jpeg" />
+                    <input class="form-control" name='image' id="salesrep-image" placeholder={sRImageDefault} />
                     <label>Close Rate %:</label>
-                    <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder="50.0" />
+                    <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder={sRCloseRateDefault} />
                     <div class="ms-2 text-center">
                         <Button type="submit mt-1" variant="primary" class="mb-2 btn btn-primary">Submit</Button>
                     </div>

@@ -80,9 +80,6 @@ function Leads() {
                 <tbody>
                     <tr>
                         <th>
-                            <h3 className="ui center aligned header">ID</h3>
-                        </th>
-                        <th>
                             <h3 className="ui center aligned header">Name</h3>
                         </th>
                         <th>
