@@ -66,6 +66,8 @@ class Call (db.Model, SerializerMixin):
     serialize_rules = ('-lead.calls', '-salesrep.calls')
 
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String)
+    time = db.Column(db.String)
     salesrep_id = db.Column(db.Integer, db.ForeignKey('salesreps.id'))
     lead_id = db.Column(db.Integer, db.ForeignKey('leads.id'))
 

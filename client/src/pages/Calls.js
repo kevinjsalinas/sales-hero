@@ -7,6 +7,8 @@ function Calls() {
     const [data, setData] = useState([])
     const [visible, setVisible] = useState(true)
     const [formData, setFormData] = useState({
+        date: "",
+        time: "",
         salesrep_id: "",
         lead_id: ""
     })
@@ -24,6 +26,8 @@ function Calls() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                'date': formData['date'],
+                'time': formData['time'],
                 'salesrep_id': formData['salesrep_id'],
                 'lead_id': formData['lead_id']
             })
@@ -88,8 +92,8 @@ function Calls() {
             <Button variant = "primary" class="mt-1" onClick={handleVisible}>Book a new call</Button>
             <div class="p-4">
                 <form hidden={visible} onSubmit={handleSubmit} style={{ width: '20%', margin:'auto'}}>
+                    <label> Sales Rep</label>
                     <div class='pb-2 form-group'>
-                        <label> Sales Rep</label>
                         {/* <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="1"/>  */}
                         <select defaultValue = "default" onChange={handleChange} name='salesrep_id'>
                             <option value="Default">Choose an option</option>
@@ -99,18 +103,26 @@ function Calls() {
                             }
                         </select>
                     </div>
-                    <div class="pb-4 form-group">
-                        <label >Lead</label>
+                    <label >Lead</label>
+                    <div class="pb-2 form-group">
                         {/* <input onChange={handleChange} name='lead_id' class="form-control" placeholder="1" /> */}
                         <select defaultValue = "default" onChange={handleChange} name='lead_id'>
-                        <option value="Default">Choose an option</option>
+                            <option value="Default">Choose an option</option>
                             {leaddata?.map((lead) => {
-                                return <option value={lead.id}  >{lead.name}</option>
+                                return <option value={lead.id}>{lead.name}</option>
                                 })
                             }
                         </select>
                     </div>
-                    <Button variant = "primary" type="submit" class="btn btn-primary">Submit</Button>
+                    <label >Date</label>
+                    <div class="pb-2 form-group">
+                        <input onChange={handleChange} type="date" name="date" />
+                    </div>
+                    <label >Time</label>
+                    <div class="pb-4 form-group">
+                        <input onChange={handleChange} type="time" name="time" />
+                    </div>
+                    <Button variant="primary" type="submit" class="btn btn-primary">Submit</Button>
                 </form>
                 <table className="ui celled striped padded table">
                     <tbody>
@@ -123,6 +135,12 @@ function Calls() {
                             </th>
                             <th>
                                 <h3 className="ui center aligned header">Lead</h3>
+                            </th>
+                            <th>
+                                <h3 className="ui center aligned header">Date</h3>
+                            </th>
+                            <th>
+                                <h3 className="ui center aligned header">Time</h3>
                             </th>
                         </tr>
                         {callList}

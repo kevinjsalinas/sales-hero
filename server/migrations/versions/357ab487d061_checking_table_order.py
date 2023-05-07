@@ -1,8 +1,8 @@
-"""added all tables and schemas from scratch
+"""checking table order
 
-Revision ID: 194a34e5104f
+Revision ID: 357ab487d061
 Revises: 
-Create Date: 2023-05-06 16:11:02.440638
+Create Date: 2023-05-07 14:23:28.260289
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '194a34e5104f'
+revision = '357ab487d061'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,6 +41,8 @@ def upgrade():
     )
     op.create_table('call',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('date', sa.String(), nullable=True),
+    sa.Column('time', sa.String(), nullable=True),
     sa.Column('salesrep_id', sa.Integer(), nullable=True),
     sa.Column('lead_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),

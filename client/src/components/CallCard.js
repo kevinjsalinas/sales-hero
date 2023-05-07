@@ -1,10 +1,23 @@
 import React from "react"
 
 
-function CallCard({id, salesrep, lead, removeCall}) {
+function CallCard({id, date, time, salesrep, lead, removeCall}) {
+
+	//handle 24h conversion to 12h
+
+	const timeHour = time
+	const firstTwoChar = timeHour.slice(0,2)
+	const lastTwoChar = timeHour.slice(-2)
+
+	const amOrPm = firstTwoChar >= 12 ? "PM" : 'AM'
+
+	const intConvert = parseInt(firstTwoChar)
+
+	const convertTime = ((intConvert + 11) % 12 + 1 )
 
 
-    console.log(id, "test in callcard")
+
+
 
     let intlocation = parseInt(id)
 
@@ -21,8 +34,10 @@ function CallCard({id, salesrep, lead, removeCall}) {
         <td>{id}</td>
         <td>{salesrep.name}</td>
         <td>{lead.name}</td>
+        <td>{date}</td>
+        <td>{convertTime}:{lastTwoChar} {amOrPm}</td>
         <td>
-          <button onClick={dropCall}>delete</button>
+          <button onClick={dropCall}>Delete</button>
         </td>
       </tr>
     )

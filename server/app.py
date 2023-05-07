@@ -241,6 +241,8 @@ class Calls(Resource):
         for call in Call.query.all():
             call_appointment = {
                 'id': call.id,
+                'date': call.date,
+                'time': call.time,
                 # 'call created': call.created_at,
                 'salesrep': {
                     'salesrep id': call.salesrep.id,
@@ -262,7 +264,7 @@ class Calls(Resource):
         data = request.get_json()
 
         try:
-            new_call = Call(salesrep_id=data['salesrep_id'], lead_id=data['lead_id'])
+            new_call = Call(date=data['date'], time=data['time'], salesrep_id=data['salesrep_id'], lead_id=data['lead_id'])
 
             db.session.add(new_call)
             db.session.commit()
@@ -271,6 +273,8 @@ class Calls(Resource):
 
             new_call_dict = {
                 'id': new_call.id,
+                'date': new_call.date,
+                'time': new_call.time,
                 'salesrep': {
                     'salesrep id': new_call.salesrep.id,
                     'name': new_call.salesrep.name

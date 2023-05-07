@@ -22,8 +22,8 @@ with app.app_context():
     leads = [l1, l2]
 
     print("Creating Calls...")
-    c1 = Call(salesrep = sr1, lead = l2)
-    c2 = Call(salesrep = sr2, lead  = l1)
+    c1 = Call(date="2023-05-25", time="12:30", salesrep = sr1, lead = l2)
+    c2 = Call(date="2023-05-20", time="15:00", salesrep = sr2, lead  = l1)
     calls = [c1, c2]
 
     db.session.add_all(sales_reps)
