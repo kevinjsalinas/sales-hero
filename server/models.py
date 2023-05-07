@@ -37,6 +37,7 @@ class SalesRep(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    image = db.Column(db.String, nullable=False)
     close_rate = db.Column(db.Float, nullable=False)
     # add image for rep 
 

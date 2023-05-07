@@ -2,11 +2,11 @@ import { React, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import SalesRepLead from './SalesRepLead';
 
-function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
+function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     const [showEdit, setShowEdit] = useState(true);
 
     // console.log(salesrep.leads[0].email, "test")
-    console.log(leads, "sales rep card")
+    console.log(image, "sales rep card")
 
     let intlocation = parseInt(id)
 
@@ -16,10 +16,16 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
         if (e.target.name.value !== '') {
             name = e.target.name.value;
         }
+
+        if (e.target.image.value !== '') {
+            image = e.target.image.value;
+        }
         
         if (e.target.close_rate.value !== '') {
             close_rate = e.target.close_rate.value;
         }
+
+
     
         fetch(`/salesreps/${intlocation}`, {
             method: "PATCH",
@@ -28,6 +34,7 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
             },
             body: JSON.stringify({
                 'name': name,
+                'image': image,
                 'close_rate': close_rate 
             })
         })
@@ -40,6 +47,7 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
             let copy = [...list]
             let salesrepID = r.id-1;
             copy[salesrepID].name = name
+            copy[salesrepID].image = image
             copy[salesrepID].close_rate = close_rate
             setData(copy)
             setShowEdit(!showEdit)
@@ -59,7 +67,8 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
         return (
             <div className="card-body">
                 <h1 class='card-title'>{name}</h1>
-                <h4>ID #: {id}</h4>
+                {/* <h4>ID #: {id}</h4> */}
+                <img src={image} alt={name} style={{ width: '100%', height: '100%' }}/>
                 <h4>Close Rate: {close_rate}%</h4>
                 <h2 class='card-title'>Leads Assigned</h2>
                 {salesrepLeadList}
@@ -74,6 +83,8 @@ function SalesRepCard ( { id, name, close_rate, leads, setData, list }) {
                 <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}}>
                     <label>Name:</label>
                     <input class="form-control" name='name' id="salesrep-name" placeholder="James Lopez" />
+                    <label>Image:</label>
+                    <input class="form-control" name='image' id="salesrep-image" placeholder="URL.jpeg" />
                     <label>Close Rate %:</label>
                     <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder="50.0" />
                     <div class="ms-2 text-center">
