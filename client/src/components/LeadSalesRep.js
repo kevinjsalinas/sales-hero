@@ -3,11 +3,13 @@ import React from "react"
 function LeadSalesRep({name}) {
 
     
-
-
+    // const nameString = `\n${name}\n`
+    // console.log(nameString)
 
     return (
-            <td>{name}</td>
+            <div>
+                <td>{name}</td>
+            </div>
     )
 }
 
