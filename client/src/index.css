@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+main {
+  margin-top: 100px;
+}
+
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.logo {
+  font-size: 33px;
+  font-family: Helvetica;
+}
+
+.bolded { 
+  font-weight: bold; 
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}

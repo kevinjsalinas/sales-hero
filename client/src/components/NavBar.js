@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
+import { Button } from 'semantic-ui-react'
 // import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 
@@ -21,24 +22,27 @@ function NavBar() {
 
     return (
         <>
-            <div className="topnav">
-                <div>
-                    <Link to="/">SALESHERO logo</Link>                
+            <div class="ui large menu ui top fixed menu">
+                <div class="item">
+                    <Link to="/">
+                        <span className="roboto bolded blue logo"> 
+                            SALES
+                        </span>
+                        <span className="roboto red logo">
+                            HERO
+                        </span>
+                    </Link> 
                 </div>
-                <div>
-                    <Link to="/">SalesReps</Link>
-                </div>
-                <div>
-                    <Link to="/leads">Leads</Link>
-                </div>
-                <Link to="/calls">Calls</Link>
-                <div>
+                <Link to="/" className="item">SalesReps</Link>
+                <Link to="/leads" className="item">Leads</Link>
+                <Link to="/calls" className="item">Calls</Link>
+                <div class="right menu">
                     <Button 
-                        onClick={handleLogout}className="ms-2" 
-                        size='sm' 
-                        variant="outline-primary" 
+                        basic
+                        onClick={handleLogout}
+                        className="ui button item ms-2" 
                         type="submit">
-                        Logout
+                            Logout
                     </Button>
                 </div>
             </div>
