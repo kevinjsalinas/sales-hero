@@ -38,7 +38,15 @@ function LoginForm() {
 
     return (
         <>
-            <Form className="">
+            <Form className="form" style={{ width: '40%'}}>
+                <div className="textcenter paddingbelow">
+                    <span className="roboto bolded black logo"> 
+                        SALES
+                    </span>
+                    <span className="roboto black logo">
+                        HERO
+                    </span>
+                </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>
                     <Form.Control 
@@ -59,8 +67,8 @@ function LoginForm() {
                 </Form.Group>
                 <Button
                     onClick={handleSubmit(submitLogin)}  
-                    className="mb-3" 
-                    variant="primary" 
+                    className="mb-4 mt-2" 
+                    variant="dark" 
                     type="submit">
                     Login
                 </Button>

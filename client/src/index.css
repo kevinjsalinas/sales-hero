@@ -7,6 +7,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bodyloginsignup {
+  height:auto;
+  width:auto;
+  margin:150px;
+}
+
+.paddingbelow {
+  padding-bottom: 10px;
+}
+
+.form {
+  margin: auto
+}
+
+.textcenter {
+  text-align: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

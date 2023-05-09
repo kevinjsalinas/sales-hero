@@ -19,7 +19,7 @@ function SalesReps() {
 
     return (
         <>
-            <h1>SalesReps Page</h1>
+            <h1 className="text-center">SalesReps</h1>
             <div className='row row-cols-3 px-3 pe-2 ps-3'>
                 {salesrepList}
             </div>

@@ -11,13 +11,13 @@ function Login() {
     const [showLogin, setShowLogin] = useState(true)
 
     return (
-        <>
-            <h1>Login/Signup Page</h1>
-            <h3>Sales Hero</h3>
+        <div className="bodyloginsignup">
+            {/* <h1>Login/Signup Page</h1> */}
+            {/* <h3 >Sales Hero</h3> */}
             { showLogin ? (
                 <>
                     <LoginForm />
-                    <p>
+                    <p className="textcenter">
                         <Form.Text className="text-muted">
                             Don't have an account?
                         </Form.Text> 
@@ -25,7 +25,7 @@ function Login() {
                             onClick={()=> setShowLogin(false)} 
                             className="ms-2" 
                             size='sm' 
-                            variant="outline-primary" 
+                            variant="outline-dark" 
                             type="submit">
                             Signup
                         </Button>
@@ -34,18 +34,18 @@ function Login() {
             ) : (
                 <>
                     <SignupForm />
-                    <p>
+                    <p className="textcenter">
                         <Form.Text className="text-muted">
                             Already have an account?
                         </Form.Text> 
-                        <Button onClick={()=> setShowLogin(true)}className="ms-2" size='sm' variant="outline-primary" type="submit">
+                        <Button onClick={()=> setShowLogin(true)}className="ms-2" size='sm' variant="outline-dark" type="submit">
                             Login
                         </Button>
                     </p>
                 </>
 
             ) }
-        </>
+        </div>
     )
 }
 

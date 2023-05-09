@@ -22,13 +22,13 @@ function NavBar() {
 
     return (
         <>
-            <div class="ui large menu ui top fixed menu">
+            <div class="ui large menu ui top fixed menu ui inverted segement">
                 <div class="item">
                     <Link to="/">
-                        <span className="roboto bolded blue logo"> 
+                        <span className="roboto bolded white logo"> 
                             SALES
                         </span>
-                        <span className="roboto red logo">
+                        <span className="roboto white logo">
                             HERO
                         </span>
                     </Link> 
@@ -38,9 +38,9 @@ function NavBar() {
                 <Link to="/calls" className="item">Calls</Link>
                 <div class="right menu">
                     <Button 
-                        basic
+                        dark
                         onClick={handleLogout}
-                        className="ui button item ms-2" 
+                        className="ui button item" 
                         type="submit">
                             Logout
                     </Button>

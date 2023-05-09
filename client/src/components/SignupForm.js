@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Button, Form, Modal } from 'react-bootstrap';
+import React, { useContext} from "react";
+import { Button, Form} from 'react-bootstrap';
 import { useForm } from "react-hook-form"
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 import { UserContext } from '../context/user';
 
 function SignupForm() {
 
-    const [ show, setShow ] = useState(false)
+    // const [ show, setShow ] = useState(false)
 
     const { setUser } = useContext(UserContext);
 
@@ -53,26 +53,15 @@ function SignupForm() {
 
     return (
         <>
-            {show 
-            ? 
-            <>
-                <Modal show={show} onHide={() => setShow(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Success!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>You've created an account</Modal.Body>
-                    <Modal.Footer>
-                        <Link to="/">
-                            <Button onClick={() => setShow(false)} variant="primary">
-                                Close
-                            </Button>
-                        </Link>
-                    </Modal.Footer>
-                </Modal>
-            </> :
-            ""
-            }
-            <Form className="">
+            <Form className="form" style={{ width: '40%'}}>
+                <div className="textcenter paddingbelow">
+                    <span className="roboto bolded black logo"> 
+                        SALES
+                    </span>
+                    <span className="roboto black logo">
+                        HERO
+                    </span>
+                </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Create Username</Form.Label>
                     <Form.Control 
@@ -100,13 +89,13 @@ function SignupForm() {
                     />
                     {errors.confirmPassword && <span style={{color:"red"}}>Comfirm Password is required</span>}
                 </Form.Group>
-                <Button
-                    onClick={handleSubmit(submitForm)} 
-                    className="mb-3" 
-                    variant="primary" 
-                    type="submit">
-                    Signup
-                </Button>
+                    <Button
+                        onClick={handleSubmit(submitForm)} 
+                        className="mb-4 mt-2" 
+                        variant="dark" 
+                        type="submit">
+                        Signup
+                    </Button>
             </Form>
         </>
     )
