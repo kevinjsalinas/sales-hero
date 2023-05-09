@@ -6,7 +6,7 @@ function SalesRepLead({ name }) {
 
     return (
         <>
-            <h4>{name}</h4>
+            <li style={{"font-size": "18px"}}>{name}</li>
         </>
     )
 }

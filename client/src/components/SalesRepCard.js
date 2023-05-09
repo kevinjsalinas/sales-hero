@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import SalesRepLead from './SalesRepLead';
 
+
+
 function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     const [showEdit, setShowEdit] = useState(true);
 
@@ -18,9 +20,9 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
 
         return ( 
             <>
-                <img src={image} alt={name} style={{ width: '100%', height: '100%' }}/>
-                <h4>Calls Booked: {salesrepLeadList.length}</h4>
-                <h4>Close Rate: {close_rate}%</h4>
+                <img className="pt-3" src={image} alt={name} style={{ width: '92%', height: '50%' }}/>
+                <h3>Calls Booked: {salesrepLeadList.length}</h3>
+                <h3 className='pb-3'>Close Rate: {close_rate}%</h3>
             </>               
         )    
     }
@@ -30,8 +32,10 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
 
         return (
             <>
-                <h2 className='card-title'>Leads Assigned</h2>
-                {salesrepLeadList}
+                <h2 className='card-title click-me'>Leads Assigned</h2>
+                <div className='pb-5 pt-3'>
+                    {salesrepLeadList}
+                </div>
             </>
         )
     }
@@ -101,7 +105,7 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     let mainDisplay = () => {
 
         return (
-            <div onClick={toggleCard} className="card-body">
+            <div onClick={toggleCard} className="card-body p-3 bg-light ">
                 <h1 className='card-title'>{name}</h1>
                 { showFront ? <Front/> : <Back/> }
             </div>
@@ -111,16 +115,21 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     let modDisp = () => {
 
         return (
-            <div className='form-group mb-2'>
-                <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}}>
-                    <label>Name:</label>
+            <div className='card-body p-3 bg-light '>
+                <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}} >
+                    <label className='pb-2 pt-3 bolded'>Name:</label>
                     <input className="form-control" name='name' id="salesrep-name" placeholder={sRNameDefault} />
-                    <label>Image:</label>
+                    <label className='pt-4 pb-2 bolded'>Image:</label>
                     <input className="form-control" name='image' id="salesrep-image" placeholder={sRImageDefault} />
-                    <label>Close Rate %:</label>
+                    <label className='pt-4 pb-2 bolded'>Close Rate %:</label>
                     <input className="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder={sRCloseRateDefault} />
-                    <div className="ms-2 text-center">
-                        <Button type="submit mt-1" variant="primary" className="mb-2 btn btn-primary">Submit</Button>
+                    <div className="pt-4 pb-1 text-center">
+                        <Button 
+                            type="submit mt-1" 
+                            variant="dark" 
+                            className="mb-2 btn btn-primary">
+                                Submit
+                        </Button>
                     </div>
                 </form>
             </div>
@@ -129,12 +138,12 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
 
     return(
         <div className="mt-4">
-            <div className="card text-center bg-light">
+            <div className="card text-center bg-light ">
                 {
                     showEdit? mainDisplay() : modDisp()
                 }
-                <div className="ms-2 mb-4 text-center">
-                    <Button variant="primary" onClick={switchDisplay}>
+                <div className="mb-4 text-center">
+                    <Button className="px-4" variant="outline-dark" onClick={switchDisplay}>
                         Edit
                     </Button>
                 </div>
