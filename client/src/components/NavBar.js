@@ -21,27 +21,7 @@ function NavBar() {
 
     return (
         <>
-            {/* <Navbar bg="light" expand="sm">
-                <Container>
-                    <Link to="/">SalesHero</Link>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Link to="/">SalesReps</Link>
-                            <Link to="/leads">Leads</Link>
-                            <Link to="/calls">Calls</Link>
-                            <Button 
-                                onClick={handleLogout}className="ms-2" 
-                                size='sm' 
-                                variant="outline-primary" 
-                                type="submit">
-                                Logout
-                            </Button>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar> */}
-            <div class="topnav">
+            <div className="topnav">
                 <div>
                     <Link to="/">SALESHERO logo</Link>                
                 </div>

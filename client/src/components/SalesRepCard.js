@@ -10,8 +10,38 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     const [ sRImageDefault, setsRImageDefault] = useState(image)
     const [ sRCloseRateDefault, setsRCloseRateDefault] = useState(close_rate)
 
-    // console.log(salesrep.leads[0].email, "test")
-    console.log(image, "sales rep card")
+    //showFrontCard useState needed 
+    const [ showFront, setShowFront ] = useState(true)
+
+    //front card component 
+    const Front = () => {
+
+        return ( 
+            <>
+                <img src={image} alt={name} style={{ width: '100%', height: '100%' }}/>
+                <h4>Calls Booked: {salesrepLeadList.length}</h4>
+                <h4>Close Rate: {close_rate}%</h4>
+            </>               
+        )    
+    }
+
+    //back card component 
+    const Back = () => {
+
+        return (
+            <>
+                <h2 className='card-title'>Leads Assigned</h2>
+                {salesrepLeadList}
+            </>
+        )
+    }
+
+    //toggle action for the card front/back to work 
+    const toggleCard = () => {
+
+        setShowFront(showFront => !showFront)
+
+    }
 
     let intlocation = parseInt(id)
 
@@ -65,19 +95,15 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     }
 
     let salesrepLeadList = leads?.map((lead) => {
-        return < SalesRepLead {...lead} />
+        return < SalesRepLead key={lead.id} {...lead} />
     }) 
 
     let mainDisplay = () => {
 
         return (
-            <div className="card-body">
-                <h1 class='card-title'>{name}</h1>
-                {/* <h4>ID #: {id}</h4> */}
-                <img src={image} alt={name} style={{ width: '100%', height: '100%' }}/>
-                <h4>Close Rate: {close_rate}%</h4>
-                <h2 class='card-title'>Leads Assigned</h2>
-                {salesrepLeadList}
+            <div onClick={toggleCard} className="card-body">
+                <h1 className='card-title'>{name}</h1>
+                { showFront ? <Front/> : <Back/> }
             </div>
         )
     }
@@ -85,16 +111,16 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     let modDisp = () => {
 
         return (
-            <div class='form-group mb-2'>
+            <div className='form-group mb-2'>
                 <form onSubmit={handleSubmit} style={{ width: '87%', margin:'auto'}}>
                     <label>Name:</label>
-                    <input class="form-control" name='name' id="salesrep-name" placeholder={sRNameDefault} />
+                    <input className="form-control" name='name' id="salesrep-name" placeholder={sRNameDefault} />
                     <label>Image:</label>
-                    <input class="form-control" name='image' id="salesrep-image" placeholder={sRImageDefault} />
+                    <input className="form-control" name='image' id="salesrep-image" placeholder={sRImageDefault} />
                     <label>Close Rate %:</label>
-                    <input class="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder={sRCloseRateDefault} />
-                    <div class="ms-2 text-center">
-                        <Button type="submit mt-1" variant="primary" class="mb-2 btn btn-primary">Submit</Button>
+                    <input className="form-control mb-3" name= 'close_rate' id="salesrep-percent" placeholder={sRCloseRateDefault} />
+                    <div className="ms-2 text-center">
+                        <Button type="submit mt-1" variant="primary" className="mb-2 btn btn-primary">Submit</Button>
                     </div>
                 </form>
             </div>
@@ -102,12 +128,12 @@ function SalesRepCard ( { id, name, image, close_rate, leads, setData, list }) {
     }
 
     return(
-        <div class="mt-4">
-            <div class="card text-center bg-light">
+        <div className="mt-4">
+            <div className="card text-center bg-light">
                 {
                     showEdit? mainDisplay() : modDisp()
                 }
-                <div class="ms-2 mb-4 text-center">
+                <div className="ms-2 mb-4 text-center">
                     <Button variant="primary" onClick={switchDisplay}>
                         Edit
                     </Button>

@@ -14,13 +14,13 @@ function SalesReps() {
     }, [])
 
     let salesrepList = data.map((salesrep) => {
-        return < SalesRepCard {...salesrep} setData={setData} list={data}/>
+        return < SalesRepCard key={salesrep.id} {...salesrep} setData={setData} list={data}/>
     }) 
 
     return (
         <>
             <h1>SalesReps Page</h1>
-            <div class='row row-cols-3 px-3 pe-2 ps-3'>
+            <div className='row row-cols-3 px-3 pe-2 ps-3'>
                 {salesrepList}
             </div>
         </>

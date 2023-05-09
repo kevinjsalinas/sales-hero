@@ -3,8 +3,6 @@ import LeadSalesRep from "./LeadSalesRep"
 
 function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
 
-    console.log(salesreps, "lead card")
-
     let intlocation = parseInt(id)
 
     let dropLead = () => {
@@ -17,7 +15,7 @@ function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
 
 
     let leadSalesrepList = salesreps?.map((salesrep) => {
-        return < LeadSalesRep {...salesrep} />
+        return < LeadSalesRep key={salesrep.id} {...salesrep} />
     }) 
 
     return (
