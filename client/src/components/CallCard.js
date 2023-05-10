@@ -1,4 +1,6 @@
 import React from "react"
+import Button from 'react-bootstrap/Button';
+
 
 
 function CallCard({id, date, time, salesrep, lead, removeCall}) {
@@ -37,7 +39,8 @@ function CallCard({id, date, time, salesrep, lead, removeCall}) {
         <td>{date}</td>
         <td>{convertTime}:{lastTwoChar} {amOrPm}</td>
         <td>
-          <button onClick={dropCall}>Delete</button>
+          {/* <button onClick={dropCall}>Delete</button> */}
+          <Button onClick={dropCall} variant="outline-danger">delete</Button>
         </td>
       </tr>
     )

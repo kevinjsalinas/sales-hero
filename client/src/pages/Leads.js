@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Button from 'react-bootstrap/Button';
+
 
 import LeadCard from "../components/LeadCard";
 
@@ -106,27 +108,46 @@ function Leads() {
             <form onSubmit={handleSubmit} class="ui form ui segment">
                 <div class="three fields">
                     <div class="field">
-                    <label>First Name Last Name</label>
-                    <input onChange={handleChange} type="text" name="name" placeholder="First Name"/>
-                    <div data-lastpass-icon-root="true" 
-                        style={{position: "relative !important", 
-                            height: "0px !important", 
-                            width: "0px !important", 
-                            float: "left !important"}}>
-                                </div></div>
-                    <div class="field">
-                    <label>Phone #</label>
-                    <input onChange={handleChange} type="text" name="phone" placeholder="839-323-4312"/>
+                        <label>First Name Last Name</label>
+                        <input 
+                            onChange={handleChange}
+                            type="text" 
+                            name="name" 
+                            placeholder="First Name Last Name"
+                        />
+                        <div data-lastpass-icon-root="true" 
+                            style={{position: "relative !important", 
+                                height: "0px !important", 
+                                width: "0px !important", 
+                                float: "left !important"}}>
+                        </div>
                     </div>
                     <div class="field">
-                    <label>Email</label>
-                    <input onChange={handleChange} type="email" name="email" placeholder="username@gmail.com"/>
+                        <label>Phone #</label>
+                        <input 
+                            onChange={handleChange} 
+                            type="text" 
+                            name="phone" 
+                            placeholder="839-323-4312"
+                        />
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input 
+                            onChange={handleChange} 
+                            type="email" 
+                            name="email" 
+                            placeholder="username@gmail.com"
+                        />
                     </div>
                 </div>
                     <div className="text-center">
-                        <button className="ui button" type="submit">
-                            Add Lead
-                        </button>
+                        <Button 
+                            type="submit" 
+                            variant="dark" 
+                            className="mb-3 mt-3 px-4 py-2 btn btn-primary">
+                                Submit
+                        </Button>
                     </div>
                 </form>
             

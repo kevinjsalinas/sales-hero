@@ -1,5 +1,7 @@
 import React from "react"
 import LeadSalesRep from "./LeadSalesRep"
+import Button from 'react-bootstrap/Button';
+
 
 function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
 
@@ -25,7 +27,8 @@ function LeadCard ({id, name, email, phone, salesreps, removeLead}) {
         <td>{email}</td>
         <td>{leadSalesrepList}</td>
         <td>
-          <button onClick={dropLead} >delete</button>
+          {/* <button onClick={dropLead} >delete</button> */}
+          <Button onClick={dropLead} variant="outline-danger">delete</Button>
         </td>
       </tr>
     )
