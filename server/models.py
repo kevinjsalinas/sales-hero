@@ -59,6 +59,12 @@ class Lead(db.Model, SerializerMixin):
     salesreps = association_proxy('calls', 'salesrep' )
     calls = db.relationship('Call', backref='lead', cascade="all, delete-orphan")
 
+    @validates('name', 'phone', 'email')
+    def validates_empty_submit(self, key, input):
+        if input == "":
+            raise ValueError('Cannot be left blank, input required')
+        return input
+
 class Call (db.Model, SerializerMixin):
 
     __tablename = 'calls'
@@ -73,17 +79,13 @@ class Call (db.Model, SerializerMixin):
 
     created_at = db.Column(db.DateTime, server_default = db.func.now())
 
-    # @validates('salesrep_id')
-    # def validates_salesrep_id(self, key, value):
-    #     salesreps = SalesRep.query.all()
-    #     ids = [salesrep.id for salesrep in salesreps]
+    @validates('salesrep_id', 'lead_id', 'date', 'time')
+    def validates_empty_submit(self, key, input):
+        if input == "":
+            raise ValueError('Cannot be left blank, input required')
+        return input
 
-    #     if not value:
-    #         raise ValueError('SalesRep must be provided.')
-    #     elif not value in ids:
-    #         raise ValueError('SalesRep must exist.')
-    #     return value
-
+    # example of email input required is in canvas Flask-SQLAlchemy Validations
     # @validates('lead_id')
     # def validates_lead_id(self, key, value):
     #     leads = Lead.query.all()

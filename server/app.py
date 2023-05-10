@@ -202,7 +202,7 @@ class Leads(Resource):
 
             response = make_response(new_lead_dict, 201)
 
-        except:
+        except ValueError:
 
             db.session.rollback()
             response = make_response({'message': 'validation errors'}, 422)
@@ -287,7 +287,7 @@ class Calls(Resource):
 
             response = make_response(new_call_dict, 201)
 
-        except:
+        except ValueError:
 
             db.session.rollback()
             response = make_response({'message': 'validation errors'}, 422)

@@ -33,10 +33,19 @@ function Calls() {
                 'lead_id': formData['lead_id']
             })
         })
-        .then(r=>r.json())
-        .then(r=> {
-            setData([...data, r])
+        .then( (r) => {
+            if (r.ok) {
+                r.json().then(r => {setData([...data, r]) })
+            } else {
+                alert("Must enter valid data")
+                e.target.reset()
+            }
         })
+
+        // .then(r=>r.json())
+        // .then(r=> {
+        //     setData([...data, r])
+        // })
         setVisible(!visible)
         e.target.reset()
 

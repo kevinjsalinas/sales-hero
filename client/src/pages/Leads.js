@@ -34,10 +34,19 @@ function Leads() {
                 'email': formData.email
             })
         })
-        .then(r => r.json())
-        .then(r => {
-            setData([...data, r])
+        .then((r) => {
+            if (r.ok) {
+                r.json().then(r=> {setData([...data, r])})
+            } else {
+                alert("Must enter valid data")
+                e.target.reset()
+
+            }
         })
+        // .then(r => r.json())
+        // .then(r => {
+        //     setData([...data, r])
+        // })
 
         e.target.reset()
     }
