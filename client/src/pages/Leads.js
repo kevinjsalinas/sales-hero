@@ -65,7 +65,7 @@ function Leads() {
 
     return (
         <>  
-            <h1 className="textcenter">Leads Page</h1>
+            <h1 className="textcenter">Leads</h1>
             {/* <div className="ui segment">
                 <form onSubmit={handleSubmit} className="ui form">
                     <div className="input-group">
@@ -146,7 +146,7 @@ function Leads() {
                             type="submit" 
                             variant="dark" 
                             className="mb-3 mt-3 px-4 py-2 btn btn-primary">
-                                Submit
+                                Create
                         </Button>
                     </div>
                 </form>

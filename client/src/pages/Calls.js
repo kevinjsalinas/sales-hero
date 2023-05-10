@@ -17,6 +17,7 @@ function Calls() {
     const [leaddata, setLeadData] = useState([])
 
     let handleSubmit = (e) => {
+
         e.preventDefault()
 
         fetch('/calls', {
@@ -37,15 +38,17 @@ function Calls() {
             setData([...data, r])
         })
         setVisible(!visible)
+        e.target.reset()
+
     }
 
     let removeCall = (drop) => {
         setData(data.filter((call) => call.id !== drop))
     }
 
-    const handleVisible = () => {
-        setVisible(!visible)
-    }
+    // const handleVisible = () => {
+    //     setVisible(!visible)
+    // }
 
     let handleChange = (e) => {
         const name = e.target.name
@@ -87,14 +90,14 @@ function Calls() {
 
     return (
         <>
-            <h1>Calls Page</h1>
+            <h1 className="textcenter">Calls</h1>
             <div class="text-center mt-3">
-            <Button variant = "primary" class="mt-1" onClick={handleVisible}>Book a new call</Button>
+            {/* <Button variant = "primary" class="mt-1" onClick={handleVisible}>Book a new call</Button> */}
             <div class="p-4">
-                <form hidden={visible} onSubmit={handleSubmit} style={{ width: '20%', margin:'auto'}}>
-                    <label> Sales Rep</label>
-                    <div class='pb-2 form-group'>
-                        {/* <input onChange={handleChange} class= 'form-control' name='salesrep_id' placeholder="1"/>  */}
+                <form  onSubmit={handleSubmit} className="ui form ui segment">
+                <div class="four fields">
+                    <div class="field">
+                        <label>Sales Rep Name</label>
                         <select defaultValue = "default" onChange={handleChange} name='salesrep_id'>
                             <option value="Default">Choose an option</option>
                             {salesrepdata?.map((salesr) => {
@@ -102,10 +105,15 @@ function Calls() {
                                 })
                             }
                         </select>
+                        <div data-lastpass-icon-root="true" 
+                            style={{position: "relative !important", 
+                                height: "0px !important", 
+                                width: "0px !important", 
+                                float: "left !important"}}>
+                        </div>
                     </div>
-                    <label >Lead</label>
-                    <div class="pb-2 form-group">
-                        {/* <input onChange={handleChange} name='lead_id' class="form-control" placeholder="1" /> */}
+                    <div class="field">
+                        <label>Lead Name</label>
                         <select defaultValue = "default" onChange={handleChange} name='lead_id'>
                             <option value="Default">Choose an option</option>
                             {leaddata?.map((lead) => {
@@ -114,16 +122,33 @@ function Calls() {
                             }
                         </select>
                     </div>
-                    <label >Date</label>
-                    <div class="pb-2 form-group">
-                        <input onChange={handleChange} type="date" name="date" />
+                    <div class="field">
+                        <label>Date</label>
+                        <input 
+                            onChange={handleChange} 
+                            type="date" 
+                            name="date" 
+                        />
                     </div>
-                    <label >Time</label>
-                    <div class="pb-4 form-group">
-                        <input onChange={handleChange} type="time" name="time" />
+                    <div class="field">
+                        <label>Time</label>
+                        <input 
+                            onChange={handleChange} 
+                            type="time" 
+                            name="time" 
+                        />
                     </div>
-                    <Button variant="primary" type="submit" class="btn btn-primary">Submit</Button>
+                </div>
+                    <div className="text-center">
+                        <Button 
+                            type="submit" 
+                            variant="dark" 
+                            className="mb-3 mt-3 px-4 py-2 btn btn-primary">
+                                Book Call
+                        </Button>
+                    </div>
                 </form>
+
                 <table className="ui celled striped padded table">
                     <tbody>
                         <tr>
