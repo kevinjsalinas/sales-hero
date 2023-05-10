@@ -63,19 +63,73 @@ function Leads() {
 
     return (
         <>  
-            <h1>Leads Page</h1>
-            <div className="ui segment">
+            <h1 className="textcenter">Leads Page</h1>
+            {/* <div className="ui segment">
                 <form onSubmit={handleSubmit} className="ui form">
-                    <div className="inline fields">
-                        <input onChange={handleChange} type="name" name="name" placeholder="FirstName LastName" />
-                        <input onChange={handleChange} type="phone" name="phone" placeholder="831-231-2123" />
-                        <input onChange={handleChange} type="email" name="email" placeholder="username@email.com" />
+                    <div className="input-group">
+                        <div className="field pt-3 p-2">
+                            <input 
+                                onChange={handleChange}
+                                className="form-control input-sm" 
+                                type="name" 
+                                name="name" 
+                                placeholder="FirstName LastName" 
+                            /> 
+                        </div>
+                        <div className="field pt-3 p-2">
+                            <input 
+                                onChange={handleChange}
+                                className="pb-2 form-control" 
+                                type="phone" 
+                                name="phone" 
+                                placeholder="831-231-2123" 
+                            />
+                        </div>
+                        <div className="field pt-3">
+                            <input 
+                                onChange={handleChange}
+                                className="form-control" 
+                                type="email" 
+                                name="email" 
+                                placeholder="username@email.com" 
+                            />
+                        </div> 
+                        
+    
                     </div>
                     <button className="ui button" type="submit">
                         Add Lead
                     </button>
                 </form>
-            </div>
+            </div> */}
+
+            <form onSubmit={handleSubmit} class="ui form ui segment">
+                <div class="three fields">
+                    <div class="field">
+                    <label>First Name Last Name</label>
+                    <input onChange={handleChange} type="text" name="name" placeholder="First Name"/>
+                    <div data-lastpass-icon-root="true" 
+                        style={{position: "relative !important", 
+                            height: "0px !important", 
+                            width: "0px !important", 
+                            float: "left !important"}}>
+                                </div></div>
+                    <div class="field">
+                    <label>Phone #</label>
+                    <input onChange={handleChange} type="text" name="phone" placeholder="839-323-4312"/>
+                    </div>
+                    <div class="field">
+                    <label>Email</label>
+                    <input onChange={handleChange} type="email" name="email" placeholder="username@gmail.com"/>
+                    </div>
+                </div>
+                    <div className="text-center">
+                        <button className="ui button" type="submit">
+                            Add Lead
+                        </button>
+                    </div>
+                </form>
+            
             <table className="ui celled striped padded table">
                 <tbody>
                     <tr>
