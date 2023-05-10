@@ -91,9 +91,9 @@ function Calls() {
     return (
         <>
             <h1 className="textcenter">Calls</h1>
-            <div class="text-center mt-3">
+            <div class="text-center">
             {/* <Button variant = "primary" class="mt-1" onClick={handleVisible}>Book a new call</Button> */}
-            <div class="p-4">
+            <div className="">
                 <form  onSubmit={handleSubmit} className="ui form ui segment">
                 <div class="four fields">
                     <div class="field">

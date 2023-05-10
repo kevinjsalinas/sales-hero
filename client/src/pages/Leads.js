@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
+import { MDBCol } from "mdbreact";
+
 
 
 import LeadCard from "../components/LeadCard";
 
 function Leads() {
+
+    //added search feature
+    const [searchLead, setSearchLead] = useState([])
 
     const [data, setData] = useState([])
     const [formData, setFormData] = useState({
@@ -57,54 +62,25 @@ function Leads() {
             })
     }, [])
 
+    //search function
 
-    const leadList = data.map((lead) => {
+    const filterLead = data.filter(leadObj => {
+        return leadObj.name.includes(searchLead)
+    })
+
+
+    const leadList = filterLead.map((lead) => {
         return ( <LeadCard key={lead.id} {...lead} removeLead={removeLead} /> )
     })
+
+    const handleSearch = e => {
+        setSearchLead(e.target.value)
+      }
 
 
     return (
         <>  
             <h1 className="textcenter">Leads</h1>
-            {/* <div className="ui segment">
-                <form onSubmit={handleSubmit} className="ui form">
-                    <div className="input-group">
-                        <div className="field pt-3 p-2">
-                            <input 
-                                onChange={handleChange}
-                                className="form-control input-sm" 
-                                type="name" 
-                                name="name" 
-                                placeholder="FirstName LastName" 
-                            /> 
-                        </div>
-                        <div className="field pt-3 p-2">
-                            <input 
-                                onChange={handleChange}
-                                className="pb-2 form-control" 
-                                type="phone" 
-                                name="phone" 
-                                placeholder="831-231-2123" 
-                            />
-                        </div>
-                        <div className="field pt-3">
-                            <input 
-                                onChange={handleChange}
-                                className="form-control" 
-                                type="email" 
-                                name="email" 
-                                placeholder="username@email.com" 
-                            />
-                        </div> 
-                        
-    
-                    </div>
-                    <button className="ui button" type="submit">
-                        Add Lead
-                    </button>
-                </form>
-            </div> */}
-
             <form onSubmit={handleSubmit} class="ui form ui segment">
                 <div class="three fields">
                     <div class="field">
@@ -146,10 +122,30 @@ function Leads() {
                             type="submit" 
                             variant="dark" 
                             className="mb-3 mt-3 px-4 py-2 btn btn-primary">
-                                Create
+                                Create Lead
                         </Button>
                     </div>
-                </form>
+            </form>
+
+            {/* <div class="ui fluid category search">
+            <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search animals..."/>
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+            </div> */}
+
+            <MDBCol md="12" className="">
+                <div className="active-pink-3 active-pink-4 mb-4">
+                    <input 
+                        onChange={handleSearch} 
+                        className="form-control" 
+                        type="text" 
+                        placeholder="Search Lead By Name" 
+                        aria-label="Search" />
+                </div>
+            </MDBCol>
+
             
             <table className="ui celled striped padded table">
                 <tbody>
