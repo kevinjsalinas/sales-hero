@@ -10,6 +10,7 @@ function Leads() {
 
     //added search feature
     const [searchLead, setSearchLead] = useState([])
+    const [error, setError] = useState(null)
 
     const [data, setData] = useState([])
     const [formData, setFormData] = useState({
@@ -36,12 +37,20 @@ function Leads() {
         })
         .then((r) => {
             if (r.ok) {
+                setError(null)
                 r.json().then(r=> {setData([...data, r])})
+                setFormData({name: "", phone: "", email: ""})
             } else {
-                alert("Must enter valid data")
-                e.target.reset()
+                // setError("must enter valid data")
+                // console.error(r.status)
+                throw Error('input required')
+                // alert("Must enter valid data")
+                // e.target.reset()
 
             }
+        })
+        .catch( err => {
+            setError(err.message)
         })
         // .then(r => r.json())
         // .then(r => {
@@ -106,6 +115,7 @@ function Leads() {
                                 width: "0px !important", 
                                 float: "left !important"}}>
                         </div>
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                     <div class="field">
                         <label>Phone #</label>
@@ -115,6 +125,7 @@ function Leads() {
                             name="phone" 
                             placeholder="839-323-4312"
                         />
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                     <div class="field">
                         <label>Email</label>
@@ -124,6 +135,7 @@ function Leads() {
                             name="email" 
                             placeholder="username@gmail.com"
                         />
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                 </div>
                     <div className="text-center">

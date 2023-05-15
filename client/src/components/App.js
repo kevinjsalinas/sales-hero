@@ -5,6 +5,7 @@ import Calls from '../pages/Calls';
 import Leads from '../pages/Leads';
 import SalesReps from '../pages/SalesReps';
 import Login from '../pages/Login';
+import Footer from './Footer';
 
 import { useContext, useEffect} from "react";
 import { UserContext } from '../context/user';
@@ -39,7 +40,8 @@ function App() {
           <SalesReps/>
         </Route>
       </Switch>
-    </main>    
+    </main>
+    <Footer/>    
 </>
   );
 }
