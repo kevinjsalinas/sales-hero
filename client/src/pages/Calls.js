@@ -6,6 +6,9 @@ function Calls() {
 
     const [data, setData] = useState([])
     const [visible, setVisible] = useState(true)
+
+    const [error, setError] = useState(null)
+
     const [formData, setFormData] = useState({
         date: "",
         time: "",
@@ -35,13 +38,19 @@ function Calls() {
         })
         .then( (r) => {
             if (r.ok) {
+                setError(null)
                 r.json().then(r => {setData([...data, r]) })
+                setFormData({date: "",time: "", salesrep_id: "", lead_id: ""})
             } else {
-                alert("Must enter valid data")
-                e.target.reset()
+                throw Error('input required')
+
+                // alert("Must enter valid data")
+                // e.target.reset()
             }
         })
-
+        .catch( err => {
+            setError(err.message)
+        })
         // .then(r=>r.json())
         // .then(r=> {
         //     setData([...data, r])
@@ -120,6 +129,7 @@ function Calls() {
                                 width: "0px !important", 
                                 float: "left !important"}}>
                         </div>
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                     <div class="field">
                         <label>Lead Name</label>
@@ -130,6 +140,7 @@ function Calls() {
                                 })
                             }
                         </select>
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                     <div class="field">
                         <label>Date</label>
@@ -138,6 +149,7 @@ function Calls() {
                             type="date" 
                             name="date" 
                         />
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                     <div class="field">
                         <label>Time</label>
@@ -146,6 +158,7 @@ function Calls() {
                             type="time" 
                             name="time" 
                         />
+                        {error && <div style={{color:"red"}}> {error}*</div>}
                     </div>
                 </div>
                     <div className="text-center">
