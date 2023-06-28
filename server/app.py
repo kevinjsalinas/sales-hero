@@ -1,9 +1,7 @@
-# add session
 from flask import request, make_response, session 
 from flask_restful import Resource 
 from sqlalchemy.exc import IntegrityError
 
-# add 
 from config import app, db, api
 from models import Call, Lead, SalesRep, User
 
@@ -13,12 +11,8 @@ def check_if_logged_in():
         'signup',
         'login',
         'check_session',
-        # '/'
     ]
 
-    # if NOT in this list + NOT logged in = error
-    # if NOT in this list + logged in = continue
-    # if in this list + not logged in = continue 
     if (request.endpoint) not in open_access_list and (not session.get('user_id')):
        
         response = make_response( { 'error': 'Unauthorized'}, 401)
@@ -40,7 +34,6 @@ class Signup(Resource):
             db.session.add(new_user)
             db.session.commit()
             
-            # changed from new_user_id to user_id
             session['user_id'] = new_user.id
 
             new_user_dict = new_user.to_dict()
@@ -182,8 +175,6 @@ class Leads(Resource):
 
             lead_list.append(lead_dict)
 
-        # lead_list = [l.to_dict() for l in Lead.query.all()]
-
         response = make_response(lead_list, 200)
 
         return response
@@ -243,7 +234,7 @@ class Calls(Resource):
                 'id': call.id,
                 'date': call.date,
                 'time': call.time,
-                # 'call created': call.created_at,
+                
                 'salesrep': {
                     'salesrep id': call.salesrep.id,
                     'name': call.salesrep.name
@@ -268,8 +259,6 @@ class Calls(Resource):
 
             db.session.add(new_call)
             db.session.commit()
-
-            # new_call_dict = new_call.to_dict()
 
             new_call_dict = {
                 'id': new_call.id,
@@ -318,15 +307,6 @@ class CallByID(Resource):
 
 api.add_resource(CallByID, '/calls/<int:id>')
 
-
-    
-
-
-# class Home(Resource):
-#     def get(self):
-#         return {'message': 'hello'}
-
-# api.add_resource(Home, '/', endpoint='/')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
