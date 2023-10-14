@@ -6,12 +6,8 @@ import Col from 'react-bootstrap/Col';
 function LeadSalesRep({name}) {
 
     
-    // const nameString = `\n${name}\n`
-    // console.log(nameString)
-
     return (
             <div>
-                {/* <td>{name}</td> */}
                 <Container>
                     <Row>
                         <Col>{name}</Col>
